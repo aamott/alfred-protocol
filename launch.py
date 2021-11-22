@@ -45,12 +45,12 @@ class AlfredProtocol:
     # run the skill
     top_skill.function()
 
-  def say(text):
+  def say(self, text):
     # send audio to google
     google_audio = gTTS(text)
 
     # save audio
-    filename = "google_audio.mp3"
+    filename = "speech.mp3"
     google_audio.save(filename)
 
     # play speech
@@ -59,6 +59,7 @@ class AlfredProtocol:
 
 # ###############################
 # Start
-Alfred_instance = AlfredProtocol()
+alfred_instance = AlfredProtocol()
+alfred_instance.say("hello friends")
 
 # Register any skills
