@@ -1,6 +1,0 @@
-
-
-
-
-Looking for an offline text to speech library
-    https://stackoverflow.com/questions/48438686/realistic-text-to-speech-with-python-that-doesnt-require-internet
