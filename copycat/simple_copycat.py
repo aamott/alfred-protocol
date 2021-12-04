@@ -1,10 +1,5 @@
-
-import os,sys
-current = os.path.dirname(os.path.realpath(__file__))
-parent = os.path.dirname(current)
-sys.path.append(parent)
-import basic_functions
-def copycat():
-    basic_functions.say(basic_functions.transcribe(basic_functions.record(5)))    
-if __name__ == '__main__':
-    copycat()
+try:
+    from ..basic_functions import say
+except:
+    from basic_functions import say
+say("Hi there!")
