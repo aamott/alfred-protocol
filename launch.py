@@ -24,9 +24,6 @@ class AlfredProtocol:
                       function("say cookies)
     phrases -- string[]. A list of phrases that will be exactly matched to call function.
     """
-    # DM: phrases should probably be converted to lowercase
-    # DM: also, consider using a set rather than a list for its O(1) look up time.
-    # DM:   Note: might not be worthwhile if number of phrases is low
     skill = {"function": function, "phrases": phrases}
     self._skills.append(skill)
       
@@ -40,16 +37,13 @@ class AlfredProtocol:
     top_skill = ''
     
     # choose the skill
-    # DM: O(n*m) where n==number of skills, m is number of phrases
     for skill in self._skills:
-    #   for phrase in skill.phrases:
-      for phrase in skill['phrases']:
+      for phrase in skill.phrases:
         if phrase == command:
           top_skill = skill
 
     # run the skill
-    # top_skill.function()
-    top_skill['function']()
+    top_skill.function()
 
   def say(self, text):
     # send audio to google
@@ -66,8 +60,6 @@ class AlfredProtocol:
 # ###############################
 # Start
 alfred_instance = AlfredProtocol()
-alfred_instance.register_skill(print,["print"])
-alfred_instance.choose_skill('print')
 alfred_instance.say("hello friends")
 
 # Register any skills
