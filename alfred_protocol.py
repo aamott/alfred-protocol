@@ -1,5 +1,6 @@
 from gtts import gTTS
 from playsound import playsound
+from skills_repository import alfred_skill
 
 
 #######################################
@@ -63,11 +64,12 @@ class AlfredProtocol:
     playsound(filename)
 
 
-# ###############################
-# Start
-alfred_instance = AlfredProtocol()
-alfred_instance.register_skill(print,["print"])
-alfred_instance.choose_skill('print')
-alfred_instance.say("hello friends")
+if __name__ == "__main__":
+  # ###############################
+  # Start
+  alfred_instance = AlfredProtocol()
+  alfred_instance.register_skill(print,["print"])
+  alfred_instance.choose_skill('print')
+  alfred_instance.say("hello friends")
 
-# Register any skills
+  # Register any skills
