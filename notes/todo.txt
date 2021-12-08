@@ -1,0 +1,15 @@
+Create a simple copy-cat program
+Create a real-time copy-cat program
+
+
+Create a way to make new skills. Preferably as a folder inside a skills folder with a start file that sets itself up.
+
+Improve the command recognizer to be an intent recognizer (basically the same, but more flexible)
+
+Make it easy to make major changes
+
+
+
+Cross Platform
+
+
