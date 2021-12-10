@@ -25,16 +25,26 @@ alfred-protocol
 
 All skills should inherit from the `Skills` class. _Check out the example skill, `hello world` for more details._ 
 ``` py
-from alfred_protocol import AlfredSkill
+from skills_repository.alfred_skill import AlfredSkill
 
+# Your skill class
 class HelloWorld(AlfredSkill):
+    name = "Hello World"
+    phrases = ["hello", "hello world"]
+
     def __init__(self):
         AlfredSkill.__init__(self)
+        self.name = "Hello World"
+
+    def run_skill(phrase):
+        print("hello world!")
 
 # AlfredProtocol will call create_skill to create the skill. 
-# It should return an instance of your skill, like shown.
-def create_skill():
-    return HelloWorld()
+# It should register an instance of your skill, like shown.
+def register_skill(skill_register_func):
+    skill = HelloWorld()
+    skill_register_func(skill, skill.phrases)
+
 ```
 
 # Rules
