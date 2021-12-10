@@ -29,7 +29,7 @@ from alfred_protocol import AlfredSkill
 
 class HelloWorld(AlfredSkill):
     def __init__(self):
-        AlfredSkill.__init__(self,)
+        AlfredSkill.__init__(self)
 
 # AlfredProtocol will call create_skill to create the skill. 
 # It should return an instance of your skill, like shown.
