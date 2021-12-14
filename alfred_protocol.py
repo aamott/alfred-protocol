@@ -98,5 +98,11 @@ if __name__ == "__main__":
   # clear the terminal a bit    
   print("\n\n\n")
 
-  # try to run a skill to test!
+  # TEST 
   alfred_instance.choose_intent("hello")
+
+  # Run
+  command = ''
+  while command != "quit" and command != "exit":
+    command = input("> ")
+    alfred_instance.choose_intent(command)
