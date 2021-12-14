@@ -82,7 +82,7 @@ def register_skills(alfred_instance):
       # Ask skill to load intents
       skill.initialize_intents(alfred_instance.register_intent)
 
-      print('Loaded skill')
+      print('Loaded Skill', skill.name)
 
     except : # TODO: Fix trying to load alfred_skill base class and __pycache__
       print("Skipping invalid skill, ", skill_module)
