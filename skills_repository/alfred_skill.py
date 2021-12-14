@@ -1,6 +1,11 @@
-class AlfredSkill:
-    name = "Generic Skill"
-    phrases = []
+from abc import ABC, abstractmethod, abstractproperty
 
-    def __init__(self):
+class AlfredSkill(ABC):
+    @abstractmethod 
+    def initialize_intents(self, register_intent):
+        """
+        registers intents to AlfredProtocol
+
+        Receives: a reference to AlfredProtocol's intent register function
+        """
         pass

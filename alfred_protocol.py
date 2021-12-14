@@ -1,9 +1,6 @@
 # For importing skills
-import importlib
+from importlib import import_module
 import os
-
-# import skills_repository
-# from pkgutil import iter_modules
 
 # For working with audio
 from gtts import gTTS
@@ -19,44 +16,40 @@ class AlfredProtocol:
   """Acts as a digital assistant, trying to follow commands"""
 
   def __init__(self, skills = []):
-    self._skills = skills
+    self._intents = skills
   
 
-  def register_skill(self, skill, phrases):
-    """Registers a skill to the skill list. 
+  def register_intent(self, intent_callback, phrases, skill_name):
+    """Registers an intent to the intent list. 
 
     Arguments: 
-    skill -- class to run when skill is chosen. Should take phrase matched as a parameter.
+    skill_callback -- function to run when skill is chosen. Should take phrase matched as a parameter.
                     Ex.  -- phrase: "say cookies" results in
-                      skill.run_skill("say cookies)
+                      skill_callback("say cookies)
     phrases -- string[]. A list of phrases that will be exactly matched to call function.
     """
     # DM: phrases should probably be converted to lowercase
     # DM: also, consider using a set rather than a list for its O(1) look up time.
     # DM:   Note: might not be worthwhile if number of phrases is low
-    skill = {"skill": skill, "phrases": phrases}
-    self._skills.append(skill)
+    intent_data = {"intent": intent_callback, "phrases": phrases, "skill name": skill_name}
+    self._intents.append(intent_data)
       
 
-  def choose_skill(self, command):
+  def choose_intent(self, command):
     """ Makes a best guess at which skill a command corresponds to (a.k.a. 'intent parsing')
     
     Arguments:
     command -- string. What the user wants.
     """
-    top_skill = ''
     
-    # choose the skill (skill is a class)
+    # choose the intent
     # DM: O(n*m) where n==number of skills, m is number of phrases
-    for skill in self._skills:
-    #   for phrase in skill.phrases:
-      for phrase in skill['phrases']:
+    for skill_info in self._intents:
+      for phrase in skill_info['phrases']:
         if phrase == command:
-          top_skill = skill["skill"]
-
-    # run the skill
-    # top_skill.function()
-    top_skill.run_skill()
+          top_intent = skill_info["intent"]
+          # run the intent
+          top_intent()
 
   def say(self, text):
     # send audio to google
@@ -70,22 +63,40 @@ class AlfredProtocol:
     playsound(filename)
 
 
+
+def register_skills(alfred_instance):
+  """ Runs through the skills folder and tries to load each module in it and call create_skill to register it
+  """
+  
+  skills_folder = "skills_repository"
+  for filepath in os.listdir(os.path.abspath(skills_folder)): 
+
+    # load module containing the skill
+    module_name = skills_folder + '.' + filepath.strip(".py")
+    skill_module = import_module(module_name)
+    
+    try:
+      # TODO: consider passing in commonly needed methods, like say and listen, when creating skill instance
+      skill = skill_module.create_skill()
+
+      # Ask skill to load intents
+      skill.initialize_intents(alfred_instance.register_intent)
+
+      print('Loaded skill')
+
+    except : # TODO: Fix trying to load alfred_skill base class and __pycache__
+      print("Skipping invalid skill, ", skill_module)
+
+
 if __name__ == "__main__":
   # ###############################
   # Start
   alfred_instance = AlfredProtocol()
   
-  # Register skills - runs through the skills_repository folder and tries to load each module in it and call create_skill to register it
-  for filepath in os.listdir(os.path.abspath("skills_repository")):  # go through each module in the directory
-    module = importlib.import_module("skills_repository." + filepath.strip(".py"))
-    try:
-      skill = module.register_skill(alfred_instance.register_skill)
-      print('Loaded skill')
-    except : # TODO: Fix trying to load alfred_skill base class and __pycache__
-      print("Skipping invalid skill, ", module)
+  register_skills(alfred_instance)
 
-  # just clear the terminal a bit    
+  # clear the terminal a bit    
   print("\n\n\n")
 
   # try to run a skill to test!
-  alfred_instance.choose_skill("hello")
+  alfred_instance.choose_intent("hello")
