@@ -52,6 +52,12 @@ def create_skill():
     return skill_instance
 ```
 
+# To-Do
+- [ ] Add more skills!
+- [ ] Find a way to pass tool functions (speak(), listen(), etc.) to skills
+- [ ] Upgrade intent matcher from phrase matching to regex then intent matching
+- [X] Make skills use classes
+
 # Rules
 - Document! More > less. Better > more. 📚
 - Test carefully! 🥇
