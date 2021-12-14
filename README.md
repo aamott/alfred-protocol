@@ -24,7 +24,7 @@ alfred-protocol
     ├─ your_single_file_skill.py
 ```
 
-All skills should inherit from the `Skills` class. _Check out the example skill, `hello world` for more details._ 
+All skills should inherit from the `AlfredSkill` class. _Check out the example skill, `hello world` for more details._ 
 ``` py
 from skills_repository.alfred_skill import AlfredSkill
 
