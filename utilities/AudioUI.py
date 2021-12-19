@@ -9,7 +9,7 @@ import gtts
 from pydub.playback import play
 import wave
 # Self made files
-from basic_functions import get_mic_frames
+from utilities.basic_functions import get_mic_frames
 
 class AudioUI:
     '''
@@ -17,12 +17,12 @@ class AudioUI:
     recording audio, playing audio, speech-to-text services, and text-
     -to-speech services
     '''
-    def __init__(self):
+    def __init__(self,speech_file=None):
         self.CHANNEL = 2
         self.RATE = 44100
         self.CHUNK = 1024
         self.FORMAT = pyaudio.paInt16
-        self._sayfile = ''.join([str(random.randint(0,9)) for _ in range(8)])
+        self._sayfile = speech_file if speech_file else ''.join([str(random.randint(0,9)) for _ in range(8)])
         self._sayobject = io.BytesIO()
         self.r = speech_recognition.Recognizer()
 
@@ -73,6 +73,7 @@ class AudioUI:
         Records time:int||float seconds of audio from microphone, 
         return file object
         If optional parameter file is given then saves audio to file
+        TODO: record while person is talking
         '''
         print("Recording")
         frames,sample_size = get_mic_frames(time)

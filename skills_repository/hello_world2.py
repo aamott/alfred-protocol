@@ -14,6 +14,6 @@ class HelloWorld2(AlfredSkill):
 
 # AlfredProtocol will call create_skill to create the skill. 
 # It should register an instance of your skill, like shown.
-def register_skill(skill_register_func):
-    skill = HelloWorld2()
-    skill_register_func(skill)
+# def register_skill(skill_register_func):
+#     skill = HelloWorld2()
+#     skill_register_func(skill)

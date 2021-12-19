@@ -1,6 +1,7 @@
 # For importing skills
 import importlib
 import os
+from utilities.AudioUI import AudioUI
 
 # import skills_repository
 # from pkgutil import iter_modules
@@ -20,7 +21,7 @@ class AlfredProtocol:
 
   def __init__(self, skills = []):
     self._skills = skills
-  
+    self.audio_ui = AudioUI()
 
   def register_skill(self, skill, phrases):
     """Registers a skill to the skill list. 
@@ -55,7 +56,7 @@ class AlfredProtocol:
 
     # run the skill
     # top_skill.function()
-    top_skill.run_skill()
+    top_skill.run_skill(self)
 
   def say(self, text):
     # send audio to google
@@ -78,7 +79,8 @@ if __name__ == "__main__":
   for filepath in os.listdir(os.path.abspath("skills_repository")):  # go through each module in the directory
     module = importlib.import_module("skills_repository." + filepath.strip(".py"))
     try:
-      skill = module.register_skill(alfred_instance.register_skill)
+    #   skill = module.register_skill(alfred_instance.register_skill)
+      skill = module.AlfredSkillSubtype.register_skill(alfred_instance.register_skill)
       print('Loaded skill')
     except : # TODO: Fix trying to load alfred_skill base class and __pycache__
       print("Skipping invalid skill, ", module)
