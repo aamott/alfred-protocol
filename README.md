@@ -76,6 +76,7 @@ def create_skill(alfred_core):
 ```
 
 # To-Do
+- [ ] Add wakeword activation 🎙️
 - [ ] Add more skills!
 - [X] Find a way to pass tool functions (speak(), listen(), etc.) to skills
 - [ ] Upgrade intent matcher from phrase matching to regex then intent matching
