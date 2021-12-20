@@ -1,6 +1,7 @@
 # For working with audio
 from gtts import gTTS
 from playsound import playsound
+import speech_recognition as sr
 from os import remove
 
 #######################################
@@ -9,8 +10,8 @@ from os import remove
 # skills that AlfredProtocol will need.
 #######################################
 class AlfredCore:
-  _tts = '' # text to speech engine
-  _stt = '' # speech to text engine
+  _tts = None # text to speech engine
+  _stt = None # speech to text engine
 
   def __init__(self, tts=None, stt=None ):
     """Init for AlfredCore
@@ -22,7 +23,10 @@ class AlfredCore:
     if tts:
       self._tts = tts
     if stt:
-      self.stt = stt
+      self._stt = stt
+    else:
+      self._recognizer = sr.Recognizer() # Initialize a Speech Recognizer object
+      self._mic = sr.Microphone() # initialize a microphone
   
 
   def say(self, text):
@@ -49,3 +53,20 @@ class AlfredCore:
 
       # Remove file
       remove(filename)
+
+
+  def listen(self):
+    if (self._stt):
+      phrase = self._stt()
+      return phrase
+    else:
+
+      with self._mic as source:
+        print("Listening...")
+        audio = self._recognizer.listen(source)
+        print("Finished listening")
+
+      # Send audio to Google for processing
+      phrase = self._recognizer.recognize_google(audio)
+
+      return phrase
