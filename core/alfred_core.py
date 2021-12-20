@@ -1,6 +1,7 @@
 # For working with audio
 from gtts import gTTS
 from playsound import playsound
+from os import remove
 
 #######################################
 # AlfredCore class
@@ -45,3 +46,6 @@ class AlfredCore:
 
       # play speech
       playsound(filename)
+
+      # Remove file
+      remove(filename)
