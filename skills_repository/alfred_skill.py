@@ -1,5 +1,5 @@
 from abc import ABC, abstractmethod, abstractproperty
-
+IGNORE = True
 class AlfredSkill(ABC):
     @abstractmethod 
     def initialize_intents(self, register_intent):

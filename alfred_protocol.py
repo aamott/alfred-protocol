@@ -75,7 +75,8 @@ def register_skills(alfred_instance):
     # load module containing the skill
     module_name = skills_folder + '.' + filepath.strip(".py")
     skill_module = import_module(module_name)
-    
+    if 'IGNORE' in dir(skill_module):
+        continue
     try:
       # TODO: consider passing in commonly needed methods, like say and listen, when creating skill instance
       skill = skill_module.create_skill()
