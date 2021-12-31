@@ -104,6 +104,11 @@ class AudioUI:
             return self.r.recognize_google(audio)
         except speech_recognition.UnknownValueError:
             return -1
+    
+    def listen(self):
+        audio = self.record(5)
+        return self.transcribe(audio)
+        
 
 
 

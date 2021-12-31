@@ -3,7 +3,12 @@ from gtts import gTTS
 from playsound import playsound
 import speech_recognition as sr
 from os import remove
-
+import sys
+if __name__ == '__main__':
+  sys.path.append('..\\utilities')
+  from AudioUI import AudioUI
+else:
+  from utilities.AudioUI import AudioUI
 #######################################
 # AlfredCore class
 # Holds the basic tools for speech and communication between
@@ -20,6 +25,7 @@ class AlfredCore:
         tts (function, optional): Text to speech function. Should accept text. Defaults to None.
         stt (function, optional): Speech to text function. Should return text. Defaults to None.
     """
+    self.audioui = AudioUI()
     if tts:
       self._tts = tts
     if stt:
@@ -27,15 +33,36 @@ class AlfredCore:
     else:
       self._recognizer = sr.Recognizer() # Initialize a Speech Recognizer object
       self._mic = sr.Microphone() # initialize a microphone
-  
 
+
+  def say(self, text):
+    """Turns a string of text into audible speech
+    Output:
+        Audible speech through device speaker
+    Args:
+        text (string): text to turn into speech
+    """
+    self.audioui.say(text)
+    return
+  def listen(self):
+    """Record audio with mic and returns text
+    Output:
+        return: text (string): text from audio text
+    Input:
+        audio from device mic
+    """
+    return self.audioui.listen()
+
+
+    '''
   def say(self, text):
     """Turns a string of text into audible speech
 
     Args:
         text (string): text to turn into speech
     """
-    
+    self.audioui.say(text)
+    return
     print(text)
     
     if self._tts:
@@ -53,9 +80,11 @@ class AlfredCore:
 
       # Remove file
       remove(filename)
+    '''
 
-
+    '''
   def listen(self):
+    return self.audioui.listen()
     if (self._stt):
       phrase = self._stt()
       return phrase
@@ -70,3 +99,4 @@ class AlfredCore:
       phrase = self._recognizer.recognize_google(audio)
 
       return phrase
+    '''
