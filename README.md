@@ -89,3 +89,4 @@ def create_skill(alfred_core):
 
 ## Contributors
 - [aamott](https://github.com/aamott)
+- [dmuller104](https://github.com/dmuller104)

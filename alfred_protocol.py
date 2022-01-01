@@ -84,7 +84,8 @@ def register_skills(alfred_instance):
     # load module containing the skill
     module_name = skills_folder + '.' + filepath.strip(".py")
     skill_module = import_module(module_name)
-    
+    if 'IGNORE' in dir(skill_module):
+        continue
     try:
       # create the skill
       if hasattr(skill_module, "create_skill"):
