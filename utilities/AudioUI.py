@@ -43,6 +43,24 @@ class AudioUI:
             play(audio)
             # raise Exception("Audio to play must be file path for now")
     
+    def get_tts(self,text,file=None):
+        if text == '':
+            return
+        tts = gtts.gTTS(text,lang='en')
+        if type(file) is str:
+            tts.save(file)
+        else:
+            if file is None:
+                self._sayobject.seek(0)
+                self._sayobject.truncate(0)
+                file = self._sayobject
+            try:
+                tts.write_to_fp(file)
+            except:
+                print("Could not write to file like object")
+                raise
+        return file
+
     def say(self,text,file=None):
         '''
         Sends text:str to google api for text to speech services
@@ -50,6 +68,7 @@ class AudioUI:
         b. file:None -> Saves speech to self file object
         c. file:filelike object -> Saves speech to external file object
         Plays speech
+        '''
         '''
         if text == '':
             return
@@ -66,7 +85,11 @@ class AudioUI:
             except:
                 print("Could not write to file like object")
                 raise
-        self.play_sound(file)
+        '''
+        f = self.get_tts(text,file)
+        if f is None:
+            return
+        self.play_sound(f)
 
     def record(self,time,file=None):
         '''
