@@ -3,7 +3,7 @@ from importlib import import_module
 import os
 import string
 
-from utils.alfred_utils import AlfredUtils
+from utilities.alfred_utils import AlfredUtils
 
 
 #######################################

@@ -1,4 +1,4 @@
-from utils.alfred_utils import AlfredUtils
+from utilities.alfred_utils import AlfredUtils
 
 # SETUP
 
