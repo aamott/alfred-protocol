@@ -5,16 +5,16 @@ import speech_recognition as sr
 from os import remove
 
 #######################################
-# AlfredCore class
+# AlfredUtils class
 # Holds the basic tools for speech and communication between
 # skills that AlfredProtocol will need.
 #######################################
-class AlfredCore:
+class AlfredUtils:
   _tts = None # text to speech engine
   _stt = None # speech to text engine
 
   def __init__(self, tts=None, stt=None ):
-    """Init for AlfredCore
+    """Init for AlfredUtils
 
     Args:
         tts (function, optional): Text to speech function. Should accept text. Defaults to None.
@@ -27,6 +27,9 @@ class AlfredCore:
     else:
       self._recognizer = sr.Recognizer() # Initialize a Speech Recognizer object
       self._mic = sr.Microphone() # initialize a microphone
+
+      with self._mic as source:
+        self._recognizer.adjust_for_ambient_noise(source)
   
 
   def say(self, text):
@@ -63,7 +66,7 @@ class AlfredCore:
 
       with self._mic as source:
         print("Listening...")
-        audio = self._recognizer.listen(source)
+        audio = self._recognizer.listen(source, timeout = 10, phrase_time_limit=5)
         print("Finished listening")
 
       # Send audio to Google for processing

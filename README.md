@@ -34,8 +34,8 @@ class HelloWorld(AlfredSkill):
     def __init__(self, alfred_core):
         """Initialize the Hello World skill class.
             All skills should have an init method which receives
-            an instance of AlfredCore. To find out more about 
-            AlfredCore, read its class file.  
+            an instance of AlfredUtils. To find out more about 
+            AlfredUtils, read its class file.  
 
         Args:
             alfred_core (class): Class holding essential tools, including say(phrase) and listen()
@@ -66,7 +66,7 @@ def create_skill(alfred_core):
     """ Skill creator function. Creates an instance of your skill to return. 
 
     Args:
-        alfred_core (AlfredCore): class instance with essential Alfred tools
+        alfred_core (AlfredUtils): class instance with essential Alfred tools
 
     Returns:
         HelloWorld: An instance of the HelloWorld skill

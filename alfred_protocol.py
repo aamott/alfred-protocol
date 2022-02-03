@@ -3,7 +3,7 @@ from importlib import import_module
 import os
 import string
 
-from core.alfred_core import AlfredCore
+from utils.alfred_utils import AlfredUtils
 
 
 #######################################
@@ -20,7 +20,7 @@ class AlfredProtocol:
     if alfred_core:
       self._alfred_core = alfred_core
     else:
-      self._alfred_core = AlfredCore()
+      self._alfred_core = AlfredUtils()
   
 
   def register_intent(self, intent_callback, phrases, skill_class = None):
@@ -68,6 +68,10 @@ class AlfredProtocol:
   def say(self, text):
     self._alfred_core.say(text)
 
+  def listen(self):
+    phrase = self._alfred_core.listen()
+    return phrase
+
 
 
 #################################
@@ -109,7 +113,7 @@ if __name__ == "__main__":
   print("\n\n\n")
 
   # TEST and say hello
-  alfred_instance.choose_intent("hello")
+  # alfred_instance.choose_intent("hello")
 
   #################################
   # Run

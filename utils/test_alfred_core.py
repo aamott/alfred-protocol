@@ -1,4 +1,4 @@
-from alfred_core import AlfredCore
+from utils.alfred_utils import AlfredUtils
 
 # SETUP
 
@@ -10,7 +10,7 @@ def listen():
 def say(phrase):
     print("SAYING: ", phrase)
 
-alfred_core = AlfredCore(tts = say, stt = listen)
+alfred_core = AlfredUtils(tts = say, stt = listen)
 
 
 # RUN TESTS
