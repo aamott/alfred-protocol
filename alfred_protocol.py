@@ -15,12 +15,12 @@ from utilities.alfred_utils import AlfredUtils
 class AlfredProtocol:
   """Acts as a digital assistant, trying to follow commands"""
 
-  def __init__(self, alfred_core = None, skills = []):
+  def __init__(self, alfred_utils = None, skills = []):
     self._intents = skills
-    if alfred_core:
-      self._alfred_core = alfred_core
+    if alfred_utils:
+      self._alfred_utils = alfred_utils
     else:
-      self._alfred_core = AlfredUtils()
+      self._alfred_utils = AlfredUtils()
   
 
   def register_intent(self, intent_callback, phrases, skill_class = None):
@@ -66,10 +66,10 @@ class AlfredProtocol:
 
 
   def say(self, text):
-    self._alfred_core.say(text)
+    self._alfred_utils.say(text)
 
   def listen(self):
-    phrase = self._alfred_core.listen()
+    phrase = self._alfred_utils.listen()
     return phrase
 
 
@@ -92,7 +92,7 @@ def register_skills(alfred_instance):
     try:
       # create the skill
       if hasattr(skill_module, "create_skill"):
-        skill = skill_module.create_skill( alfred_instance._alfred_core )
+        skill = skill_module.create_skill( alfred_instance._alfred_utils )
 
         # Ask skill to load intents
         skill.initialize_intents(alfred_instance.register_intent)
