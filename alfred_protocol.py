@@ -104,20 +104,25 @@ def register_skills(alfred_instance):
       print("\t", e)
 
 
+#################################
+# INITIALIZOR
+# Instructions:
+#    Run this file (ex. 'python alfred_protocol.py')
+#################################
 if __name__ == "__main__":
-  # ###############################
-  # Start
-  alfred_instance = AlfredProtocol()
-  
-  register_skills(alfred_instance)
-  print("\n\n\n")
 
-  # TEST and say hello
-  # alfred_instance.choose_intent("hello")
+  # ###############################
+  # Load
+  alfred_instance = AlfredProtocol()
+  register_skills(alfred_instance)
+
+  print("\n\n\nEnter your command. Type 'listen' to use use speech recognition.\nType 'exit' when finished.\n\n")
 
   #################################
   # Run
   command = ''
   while command != "quit" and command != "exit":
     command = input("> ")
+    if command == "listen":
+      command = alfred_instance.listen()
     alfred_instance.choose_intent(command)
