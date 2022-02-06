@@ -75,14 +75,17 @@ def create_skill(alfred_utils):
     return skill_instance
 ```
 
-# To-Do
+# Backlog
 - [ ] Add wakeword activation 🎙️
-- [ ] Add more skills!
-- [X] Find a way to pass tool functions (speak(), listen(), etc.) to skills
-- [ ] Upgrade intent matcher from phrase matching to regex then intent matching
+- [ ] Upgrade intent chooser to intent classification
+- [ ] Add skills
+- [ ] More voices
+- [ ] More Speech Recognition engines
+- [ ] Skills Repository
 - [X] Make skills use classes
+- [X] Find a way to pass tool functions (speak(), listen(), etc.) to skills
 
-# Rules
+# Recommendations
 - Document! More > less. Better > more. 📚
 - Test carefully! 🥇
 - Be creative! 💡
