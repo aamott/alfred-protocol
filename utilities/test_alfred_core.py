@@ -1,7 +1,6 @@
-from utilities.alfred_utils import AlfredUtils
+from alfred_utils import AlfredUtils
 
 # SETUP
-
 # Artificial Speech to Text and Text to Speech functions (don't want testing wasting our quotas)
 def listen():
     print("LISTENING")
@@ -10,7 +9,10 @@ def listen():
 def say(phrase):
     print("SAYING: ", phrase)
 
+# Use the first one to test logic updates to the system. 
 alfred_utils = AlfredUtils(tts = say, stt = listen)
+# Use the second one to test if it actually works with the default API's
+# alfred_utils = AlfredUtils()
 
 
 # RUN TESTS
