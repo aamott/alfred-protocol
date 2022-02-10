@@ -1,17 +1,18 @@
 # alfred-protocol
 A voice assistant built as an educational project with the [Society of Artificial Intelligence](https://sai-byui.github.io/) at BYU - Idaho with a focus on clarity, simplicity, and extensibility.
 
-# Install
+# Installation
 ### Unix/Linux/macOS
-1. Make sure [Python 3.7](https://www.python.org/) or above is installed
+1. Make sure [Python 3.7](https://www.python.org/) or above is installed (currently tested up to 3.9)
 2. In a terminal, run `python -m pip install -r requirements.txt`
+3. Start with `python alfred_protocol.py`
 
 ### Windows
 1. Make sure [Python 3.7](https://www.python.org/) or above is installed
 2. In PowerShell, run `py -m pip install -r requirements.txt`
 3. To start, run `python alfred_protocol.py`
 
-# Contribute
+# Contributing
 ## Creating a Skill
 All skills are stored in the `skills-repository` folder. To make a new skill, create a folder inside the `skills-repository` folder and add a file named `init.py` or give it the same name as your folder. As an example, look at the depiction below. 
 ```
@@ -79,7 +80,7 @@ def create_skill(alfred_utils):
 - [ ] Add wakeword activation 🎙️
 - [ ] Upgrade intent chooser to intent classification
 - [ ] Add skills
-- [ ] More voices
+- [ ] More voices 🔉
 - [ ] More Speech Recognition engines
 - [ ] Skills Repository
 - [X] Make skills use classes
