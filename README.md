@@ -2,6 +2,9 @@
 A voice assistant built as an educational project with the [Society of Artificial Intelligence](https://sai-byui.github.io/) at BYU - Idaho with a focus on clarity, simplicity, and extensibility.
 
 # Installation
+### Requirements
+- Python >3.7. Currently tested up to 3.9.
+ 
 ### Unix/Linux/macOS
 1. Make sure [Python 3.7](https://www.python.org/) or above is installed (currently tested up to 3.9)
 2. In a terminal, run `python -m pip install -r requirements.txt`
@@ -10,7 +13,8 @@ A voice assistant built as an educational project with the [Society of Artificia
 ### Windows
 1. Make sure [Python 3.7](https://www.python.org/) or above is installed
 2. In PowerShell, run `py -m pip install -r requirements.txt`
-3. To start, run `python alfred_protocol.py`
+3. If you get an error while installing `pyaudio`, run `pipwin install pyaudio`. pipwin will already be installed from the requirements.
+4. To start, run `python alfred_protocol.py`
 
 # Contributing
 ## Creating a Skill
