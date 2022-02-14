@@ -55,6 +55,7 @@ class AlfredProtocol:
     Arguments:
     command -- string. What the user wants.
     """
+    # TODO: Improve intent parsing. 
     
     # DM: O(n*m) where n==number of skills, m is number of phrases
     for intent_info in self._intents:
@@ -87,9 +88,10 @@ def register_skills(alfred_instance):
 
     # load module containing the skill
     module_name = skills_folder + '.' + filepath.strip(".py")
-    skill_module = import_module(module_name)
     
     try:
+      skill_module = import_module(module_name)
+  
       # create the skill
       if hasattr(skill_module, "create_skill"):
         skill = skill_module.create_skill( alfred_instance._alfred_utils )
