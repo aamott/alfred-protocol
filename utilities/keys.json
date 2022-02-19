@@ -1,0 +1,17 @@
+{
+    "Example": {
+        "key": "Insert the api key here",
+        "other_data": "Some api's need another piece of info, like a region or url to use.",
+        "enabled": "Put either 'true' or 'false' here. true should only be used when all data needed for the api is valid and active."
+    },
+    "IBM_TTS": {
+        "key": "your-key",
+        "service_url": "your-url",
+        "enabled": false
+    },
+    "MS_Voice": {
+        "key": "your-key",
+        "location_region": "your-location-region",
+        "enabled": true
+    }
+}
