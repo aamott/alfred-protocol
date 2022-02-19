@@ -246,7 +246,7 @@ if __name__ == "__main__":
     ################
     # load keys 
     api_keys = None
-    with open('D:\\projects\\alfred-protocol\\utilities\\keys.json') as file:
+    with open('utilities\\keys.json') as file:
         api_keys = json.load(file)
 
     ################
