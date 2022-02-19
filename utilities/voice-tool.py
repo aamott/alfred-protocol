@@ -245,6 +245,8 @@ class AlfredUtils:
 if __name__ == "__main__":
     ################
     # load keys 
+    # NOTE: You need a keys.json file! 
+    #   it should look like example-keys.json
     api_keys = None
     with open('utilities\\keys.json') as file:
         api_keys = json.load(file)
