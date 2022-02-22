@@ -1,7 +1,7 @@
 ################
 # Audio packages
 gTTS>=2.2.3
-playsound!=1.2.3 # 1.2.3 can give an error
+playsound==1.2.2 # 1.2.3 and up usually give an error
 SpeechRecognition>=3.8.0
 pipwin>=0.5.1
 # Install with "pipwin install pyaudio" unless you have python <3.7
